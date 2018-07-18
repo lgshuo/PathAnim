@@ -25,6 +25,7 @@ public class PathAnimator {
 
     public void lineTo(float x, float y) {
         mPoints.add(PathPoint.lineTo(x,y));
+//        mPoints.add(PathPoint.moveTo(x,y));
     }
 
     public void curveTo(float c0x, float c0y,float c1x, float c1y,float x, float y) {
@@ -32,9 +33,6 @@ public class PathAnimator {
     }
     public  void arcTo(float x, float y, float radius,float angle,float startAngle) {
         mPoints.add(PathPoint.arcTo(x, y, radius, angle,startAngle));
-        float movex = x + (float) (x - radius * (Math.sin(Math.toRadians(angle + startAngle))) + radius * Math.sin(Math.toRadians(1 + startAngle)));
-        float movey = y + (float) ((radius * (1 - Math.cos(Math.toRadians(angle + startAngle)) - (1 - Math.cos(Math.toRadians(startAngle))))));
-        mPoints.add(PathPoint.moveTo(movex, movey));
     }
 
     public Collection<PathPoint> getPoints() {
@@ -49,7 +47,8 @@ public class PathAnimator {
         this.view = view;
         ObjectAnimator animator = ObjectAnimator.ofObject(this, FABLOCATION, new PathEvaluator(), getPoints().toArray());
         animator.setDuration(duration);
-//        animator.setInterpolator(new AccelerateInterpolator());
+
+        animator.setInterpolator(new AccelerateInterpolator());
         animator.start();
         return animator;
     }

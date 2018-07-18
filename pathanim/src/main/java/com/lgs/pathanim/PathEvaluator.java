@@ -31,8 +31,13 @@ public class PathEvaluator implements TypeEvaluator<PathPoint> {
                     t * t * t * endValue.mY;
 
         } else if (endValue.mOperation == PathPoint.LINE) { //直线运动的计算方式
-            x = startValue.mX + t * (endValue.mX /*- startValue.mX*/);
-            y = startValue.mY + t * (endValue.mY /*- startValue.mY*/);
+
+
+           float startX = startValue.mX + (float) (startValue.mX - startValue.mRadius * (Math.sin(Math.toRadians(startValue.mAngle +startValue.mStartAngle)))+startValue.mRadius*Math.sin(Math.toRadians(startValue.mStartAngle)));
+           float startY = startValue.mY + (float) ((startValue.mRadius * (1 - Math.cos(Math.toRadians(startValue.mAngle + startValue.mStartAngle)) - (1 - Math.cos(Math.toRadians(startValue.mStartAngle))))));
+
+            x = startX + t * (endValue.mX /*- startValue.mX*/);
+            y = startY + t * (endValue.mY /*- startValue.mY*/);
 
             Log.e("line", "x: "+x +";      y: "+y+"--------------------------t :"+t);
         } else if (endValue.mOperation == PathPoint.MOVE) {
