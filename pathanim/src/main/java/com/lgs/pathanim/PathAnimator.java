@@ -11,10 +11,10 @@ import java.util.Collection;
  * Created by admin on 2017/12/1.
  */
 
-public class AnimatorPath {
+public class PathAnimator {
     private View view;
     public static final String FABLOCATION = "fabLocation";
-    public AnimatorPath() {
+    public PathAnimator() {
 
     }
 
@@ -32,6 +32,9 @@ public class AnimatorPath {
     }
     public  void arcTo(float x, float y, float radius,float angle,float startAngle) {
         mPoints.add(PathPoint.arcTo(x, y, radius, angle,startAngle));
+        float movex = x + (float) (x - radius * (Math.sin(Math.toRadians(angle + startAngle))) + radius * Math.sin(Math.toRadians(1 + startAngle)));
+        float movey = y + (float) ((radius * (1 - Math.cos(Math.toRadians(angle + startAngle)) - (1 - Math.cos(Math.toRadians(startAngle))))));
+        mPoints.add(PathPoint.moveTo(movex, movey));
     }
 
     public Collection<PathPoint> getPoints() {
@@ -42,11 +45,11 @@ public class AnimatorPath {
         view.setTranslationY(p.mY);
     }
 
-    public ObjectAnimator startAnim(View view){
+    public ObjectAnimator startAnim(View view,long duration){
         this.view = view;
         ObjectAnimator animator = ObjectAnimator.ofObject(this, FABLOCATION, new PathEvaluator(), getPoints().toArray());
-        animator.setDuration(2000);
-        animator.setInterpolator(new AccelerateInterpolator());
+        animator.setDuration(duration);
+//        animator.setInterpolator(new AccelerateInterpolator());
         animator.start();
         return animator;
     }

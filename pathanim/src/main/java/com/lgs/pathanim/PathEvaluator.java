@@ -31,16 +31,17 @@ public class PathEvaluator implements TypeEvaluator<PathPoint> {
                     t * t * t * endValue.mY;
 
         } else if (endValue.mOperation == PathPoint.LINE) { //直线运动的计算方式
-            x = startValue.mX + t * (endValue.mX - startValue.mX);
-            y = startValue.mY + t * (endValue.mY - startValue.mY);
+            x = startValue.mX + t * (endValue.mX /*- startValue.mX*/);
+            y = startValue.mY + t * (endValue.mY /*- startValue.mY*/);
+
+            Log.e("line", "x: "+x +";      y: "+y+"--------------------------t :"+t);
         } else if (endValue.mOperation == PathPoint.MOVE) {
             x = endValue.mX;
             y = endValue.mY;
         } else if (endValue.mOperation == PathPoint.ARC) {
-            x = endValue.mX + (float) (endValue.mX - endValue.mRadius * (Math.sin(Math.toRadians(endValue.mAngle * t+endValue.mStartAngle)))) + endValue.mRadius;
-            y = endValue.mY + (float) ((endValue.mRadius * (1 - Math.cos(Math.toRadians(endValue.mAngle * t+endValue.mStartAngle)))));
-
-            Log.e("path", "x: " + x + ";y: " + y+";angle: "+(endValue.mAngle *t+endValue.mStartAngle));
+            x = endValue.mX + (float) (endValue.mX - endValue.mRadius * (Math.sin(Math.toRadians(endValue.mAngle * t+endValue.mStartAngle)))+endValue.mRadius*Math.sin(Math.toRadians(t+endValue.mStartAngle)));
+            y = endValue.mY + (float) ((endValue.mRadius * (1 - Math.cos(Math.toRadians(endValue.mAngle * t + endValue.mStartAngle)) - (1 - Math.cos(Math.toRadians(endValue.mStartAngle))))));
+            Log.e("ARC", "x: "+x +";      y: "+y);
         }
 
         return PathPoint.moveTo(x, y);
