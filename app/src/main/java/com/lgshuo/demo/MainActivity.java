@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 float v1 = fabCenterY - toolBarCenterY - (fabCenterX - toolBarCenterX)+mToolBarHeight/2;
                 pathAnimator.moveTo(0,0);
-                pathAnimator.arcTo(0, 0, fabCenterX - toolBarCenterX, -90, -180);
                 pathAnimator.lineTo(0, -v1);
+                pathAnimator.arcTo(0, 0, fabCenterX - toolBarCenterX, -90, -180);
 //                pathAnimator.moveTo(-fabCenterX + toolBarCenterX,-fabCenterX + toolBarCenterX);
                 pathAnimator.startAnim(mFab, 2000);
                 break;
