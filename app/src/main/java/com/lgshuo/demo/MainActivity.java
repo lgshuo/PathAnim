@@ -1,9 +1,11 @@
 package com.lgshuo.demo;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.lgs.pathanim.PathAnimator;
 
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private float mFabHeight, mFabWidth, mFabLeft, mFabRight, mFabTop, mFabBottom;
     private float mToolBarHeight, mToolBarWidth, mToolBarLeft, mToolBarRight, mToolBarTop, mToolBarBottom;
+    private View mSearch;
+    private View mSearchView;
 
 
     @Override
@@ -22,12 +26,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mFab = findViewById(R.id.fab);
         mToolBar = findViewById(R.id.toolBar);
+        mSearch = findViewById(R.id.search);
+        mSearchView = findViewById(R.id.iv_bottom_search);
+        mSearch.setScaleX(0);
+        mSearch.setScaleY(0);
+
+        mSearchView.setScaleX(0);
+        mSearchView.setScaleY(0);
+
         mFab.setOnClickListener(this);
-/*
-        PathAnimator mPath = new PathAnimator();
-        mPath.moveTo(0,0);
-        mPath.arcTo(0,0,300,90,90);
-        ObjectAnimator animator = mPath.startAnim(mFab,500);*/
+        mSearchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "搜索", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -68,7 +81,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 pathAnimator.arcTo(0, 0, fabCenterX - toolBarCenterX, -90, -180);
                 pathAnimator.lineTo(0, -v1);
 //                pathAnimator.moveTo(-fabCenterX + toolBarCenterX,-fabCenterX + toolBarCenterX);
-                pathAnimator.startAnim(mFab, 2000);
+                ObjectAnimator objectAnimator = pathAnimator.startAnim(mFab, 2000);
+                objectAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mFab.setVisibility(View.GONE);
+                        mSearch.setScaleY(1);
+                        mSearch.setScaleX(mSearch.getHeight()/mSearch.getWidth());
+                        mSearch.animate().scaleX(1).setDuration(1000).start();
+
+                        mSearchView.setScaleX(1);
+                        mSearchView.setScaleY(1);
+                        mSearchView.animate().translationX(mSearch.getWidth() / 2 - mSearchView.getWidth()/2).setDuration(1200).start();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+
                 break;
         }
     }

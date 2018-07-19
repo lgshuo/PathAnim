@@ -44,7 +44,7 @@ public class PathEvaluator implements TypeEvaluator<PathPoint> {
             y = endValue.mY;
         } else if (endValue.mOperation == PathPoint.ARC) {
             calcStartXY(startValue, endValue);
-            x = startX + endValue.mX + (float) (endValue.mX - endValue.mRadius * (Math.sin(Math.toRadians(endValue.mAngle * t + endValue.mStartAngle))) + endValue.mRadius * Math.sin(Math.toRadians(t + endValue.mStartAngle)));
+            x = startX + endValue.mX + (float) (endValue.mX - endValue.mRadius * (Math.sin(Math.toRadians(endValue.mAngle * t + endValue.mStartAngle))) + endValue.mRadius * Math.sin(Math.toRadians(endValue.mStartAngle)));
             y = startY + endValue.mY + (float) ((endValue.mRadius * (1 - Math.cos(Math.toRadians(endValue.mAngle * t + endValue.mStartAngle)) - (1 - Math.cos(Math.toRadians(endValue.mStartAngle))))));
         }
         return PathPoint.moveTo(x, y);
