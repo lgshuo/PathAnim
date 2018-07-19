@@ -5,6 +5,6 @@
 		}
 	}
 
-		dependencies {
-    	        implementation 'com.github.lgshuo:PathAnim:v1.0.3'
-    	}
+	dependencies {
+    	    implementation 'com.github.lgshuo:PathAnim:v1.0.4'
+    }
