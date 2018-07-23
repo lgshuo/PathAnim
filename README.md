@@ -1,10 +1,10 @@
-#简介#
+# 简介
 	一个根据路径去执行动画的框架
 
-#效果图#
+# 效果图
 ![](https://github.com/lgshuo/PathAnim/blob/master/gif/anim.gif)
 
-#使用方法#
+# 使用方法
 
 	allprojects {
 		repositories {
