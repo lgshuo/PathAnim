@@ -21,7 +21,7 @@
 
 	PathAnimator pathAnimator = new PathAnimator();
  	pathAnimator.moveTo(x,y);		//移动到动画起始点(相对位置)
-    pathAnimator.arcToarcTo(x,y,radius,angle,startAngle)	//添加圆弧路径
+    pathAnimator.arcTo(x,y,radius,angle,startAngle)	//添加圆弧路径
     pathAnimator.lineTo(x,y);		//添加直线路径
 	pathAnimator.curveTo(c0x,c0y,c1x,c1y,x,y)	//添加贝赛尔曲线路径
 
