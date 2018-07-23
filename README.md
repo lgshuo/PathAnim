@@ -2,7 +2,7 @@
 	一个根据路径去执行动画的框架
 
 #效果图#
-<img src="https://raw.githubusercontent.com/lgshuo/PathAnim/master/gif/anim.gif/>
+![](https://github.com/lgshuo/PathAnim/blob/master/gif/anim.gif)
 
 #使用方法#
 
