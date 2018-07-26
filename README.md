@@ -14,7 +14,7 @@
 	}
 
 	dependencies {
-    	    implementation 'com.github.lgshuo:PathAnim:v1.0.4'
+    	    implementation 'com.github.lgshuo:PathAnim:v1.0.5'
     }
 
 

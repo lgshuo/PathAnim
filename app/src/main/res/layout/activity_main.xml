@@ -1,49 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<FrameLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <View
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize">
-
-        <View
-            android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary" />
-
-        <FrameLayout
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="4dp">
-
-
-            <EditText
-                android:id="@+id/edit_text_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFF"
-                android:gravity="center_vertical"
-                android:hint="请输入漫画的名字"
-                android:paddingLeft="12dp"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textColor="#000" />
-        </FrameLayout>
-        <ImageView
-            android:id="@+id/iv_bottom_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:padding="2dp"
-            android:src="@mipmap/ic_launcher" />
-
-    </FrameLayout>
+        android:layout_height="?actionBarSize" />
+    <View
+        android:layout_gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        />
 
     <ImageView
         android:id="@+id/fab"

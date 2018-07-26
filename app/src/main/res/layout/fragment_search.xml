@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <FrameLayout
+            android:id="@+id/search_parent"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+
+            >
+
+
+            <EditText
+                android:id="@+id/edit_text_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="#FFF"
+                android:gravity="center_vertical"
+                android:hint="请输入漫画的名字"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textColor="#000" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:padding="2dp"
+            android:src="@mipmap/ic_launcher" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@mipmap/ic_launcher" />
+
+</FrameLayout>

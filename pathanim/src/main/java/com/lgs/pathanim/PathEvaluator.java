@@ -33,19 +33,24 @@ public class PathEvaluator implements TypeEvaluator<PathPoint> {
                     3 * oneMinusT * oneMinusT * t * endValue.mControl0Y +
                     3 * oneMinusT * t * t * endValue.mControl1Y +
                     t * t * t * endValue.mY;
-
+            Log.e("curve", "x:" + x + ";      y" + y);
         } else if (endValue.mOperation == PathPoint.LINE) { //直线运动的计算方式
             calcStartXY(startValue, endValue);
             x = startX + t * (endValue.mX /*- startValue.mX*/);
             y = startY + t * (endValue.mY /*- startValue.mY*/);
+
+            Log.e("line", "x:" + x + ";      y" + y);
         } else if (endValue.mOperation == PathPoint.MOVE) {
             calcStartXY(startValue, endValue);
             x = endValue.mX;
             y = endValue.mY;
+
+            Log.e("move", "x:" + x + ";      y" + y);
         } else if (endValue.mOperation == PathPoint.ARC) {
             calcStartXY(startValue, endValue);
             x = startX + endValue.mX + (float) (endValue.mX - endValue.mRadius * (Math.sin(Math.toRadians(endValue.mAngle * t + endValue.mStartAngle))) + endValue.mRadius * Math.sin(Math.toRadians(endValue.mStartAngle)));
             y = startY + endValue.mY + (float) ((endValue.mRadius * (1 - Math.cos(Math.toRadians(endValue.mAngle * t + endValue.mStartAngle)) - (1 - Math.cos(Math.toRadians(endValue.mStartAngle))))));
+            Log.e("arc", "x:" + x + ";      y" + y);
         }
         return PathPoint.moveTo(x, y);
     }
@@ -62,8 +67,8 @@ public class PathEvaluator implements TypeEvaluator<PathPoint> {
                 startX = startValue.mX;
                 startY = startValue.mY;
             } else if (lastOperation == PathPoint.LINE) {
-                startX = startValue.mX;
-                startY = startValue.mY;
+                startX = startX+startValue.mX;
+                startY = startY+startValue.mY;
             } else if (lastOperation == PathPoint.ARC) {
                 startX = startValue.mX + (float) (startValue.mX - startValue.mRadius * (Math.sin(Math.toRadians(startValue.mAngle + startValue.mStartAngle))) + startValue.mRadius * Math.sin(Math.toRadians(startValue.mStartAngle)));
                 startY = startValue.mY + (float) ((startValue.mRadius * (1 - Math.cos(Math.toRadians(startValue.mAngle + startValue.mStartAngle)) - (1 - Math.cos(Math.toRadians(startValue.mStartAngle))))));
